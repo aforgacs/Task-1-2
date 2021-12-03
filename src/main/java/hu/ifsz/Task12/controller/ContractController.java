@@ -1,8 +1,9 @@
 package hu.ifsz.Task12.controller;
 
-import com.ifsz.ifsz1.dto.ContractListItem;
-import com.ifsz.ifsz1.dto.CreateContractCommand;
-import com.ifsz.ifsz1.service.ContractService;
+
+import hu.ifsz.Task12.dto.ContractListItem;
+import hu.ifsz.Task12.dto.CreateContractCommand;
+import hu.ifsz.Task12.service.ContractService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

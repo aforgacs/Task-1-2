@@ -1,7 +1,7 @@
 package hu.ifsz.Task12.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ifsz.ifsz1.dto.CreateContractCommand;
+import hu.ifsz.Task12.dto.CreateContractCommand;
 
 import javax.persistence.*;
 import java.util.Date;

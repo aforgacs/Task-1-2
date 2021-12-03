@@ -1,7 +1,8 @@
 package hu.ifsz.Task12.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.ifsz.ifsz1.domain.Contract;
+import hu.ifsz.Task12.domain.Contract;
+
 
 import java.math.BigDecimal;
 import java.util.Date;

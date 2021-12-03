@@ -1,9 +1,10 @@
 package hu.ifsz.Task12.service;
 
-import com.ifsz.ifsz1.domain.Contract;
-import com.ifsz.ifsz1.dto.ContractListItem;
-import com.ifsz.ifsz1.dto.CreateContractCommand;
-import com.ifsz.ifsz1.repository.ContractRepository;
+
+import hu.ifsz.Task12.domain.Contract;
+import hu.ifsz.Task12.dto.ContractListItem;
+import hu.ifsz.Task12.dto.CreateContractCommand;
+import hu.ifsz.Task12.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
