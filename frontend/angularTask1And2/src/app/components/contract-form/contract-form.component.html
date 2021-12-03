@@ -1,10 +1,85 @@
+<div>
+  <h3>Contract form</h3>
+  <hr/>
+  <form [formGroup]="contractForm">
+    <div class="form-group">
+      <label
+        for="megnevezes"
+        class="form-control-label"
+      >
+        Megnevezes:
+      </label>
+      <input
+        type="text"
+        id="megnevezes"
+        formControlName="megnevezes"
+        name="megnevezes"
+        placeholder="Megnevezes"
+        class="form-control"
+
+      />
+
+    </div>
 
 
 
+    <div class="form-group">
+      <label
+        for="ertek"
+        class="form-control-label"
+
+      >
+        Ertek:
+      </label>
+      <input
+        type="number"
+        id="ertek"
+        formControlName="ertek"
+        name="ertek"
+        class="form-control"
+
+      />
+
+    </div>
+
+
+    <div class="form-group">
+      <label for="erv_kezdete">Ervenyesseg Kezdete:</label>
+      <input
+        class="form-control"
+        formControlName="erv_kezdete"
+        id="erv_kezdete"
+        name="erv_kezdete"
+        type="datetime-local"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="erv_vege">Ervenyesseg Vege:</label>
+      <input
+        class="form-control"
+        formControlName="erv_vege"
+        id="erv_vege"
+        name="erv_vege"
+        type="datetime-local"
+      >
 
 
 
+    </div>
 
-<div *ngIf="contractForm.errors?.ValidationErrors['dateCompareValidator'] && (contractForm.touched || contractForm.dirty)" class="cross-validation-error-message alert alert-danger">
-  Ervenyesseg kezdete kisebb vagy egyenlőnek kell lennie az ervenyesseg vegevel.
+
+    <div class="form-group">
+      <label for="ertek" class="form-control-label">Aktiv szerződés:</label>
+      <div>
+        <input type="radio" id="i" name="radAnswer" formControlName = "aktiv" value="I">
+        <label class="form-control-label" for="i">I</label><br>
+        <input type="radio" id="n" name="radAnswer" formControlName = "aktiv" value="N">
+        <label class="form-control-label" for="n">N</label><br>
+      </div>
+
+    </div>
+
+    <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
+  </form>
 </div>

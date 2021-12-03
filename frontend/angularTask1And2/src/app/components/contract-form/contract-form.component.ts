@@ -12,6 +12,22 @@ import {Router} from "@angular/router";
 export class ContractFormComponent implements OnInit {
 
   contractForm: FormGroup;
+
+
+  constructor(private contractService: ContractServiceService, private http: HttpClient,
+              private formbuilder: FormBuilder,
+              private router: Router) {
+    this.contractForm = this.formbuilder.group({
+      megnevezes: [ '',[Validators.required]],
+      ertek: [ [Validators.required]],
+      erv_kezdete:['',[Validators.required]],
+      erv_vege: [''],
+      aktiv:['',[Validators.required]]
+    }, { validators: this.dateCompareValidator });
+  }
+
+
+
    dateCompareValidator: ValidatorFn = (compare: AbstractControl):
     ValidationErrors | null => {
     const erv_kezdete = compare.get('erv_kezdete');
@@ -20,17 +36,7 @@ export class ContractFormComponent implements OnInit {
     return erv_kezdete && erv_vege && erv_kezdete.value <= erv_vege.value ? { identityRevealed: true } : null;
   };
 
-  constructor(private contractService: ContractServiceService, private http: HttpClient,
-             private formbuilder: FormBuilder,
-              private router: Router) {
-    this.contractForm = this.formbuilder.group({
-      megnevezes: [ [Validators.required]],
-      ertek: [ [Validators.required]],
-      erv_kezdete:[Validators.required],
-      erv_vege: [],
-      aktiv:['N',[Validators.required]]
-    }, { validators: this.dateCompareValidator });
-  }
+
 
 
   ngOnInit() {

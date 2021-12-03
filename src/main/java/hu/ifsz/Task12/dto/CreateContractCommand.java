@@ -30,9 +30,12 @@ public class CreateContractCommand {
     }
 
     public void setErtek(float ertek) {
-        String ertekString = String.format("%.2f", ertek);
+        /*String ertekString = String.format("%.2f", ertek);
         float ertekMod = Float.parseFloat(ertekString);
-        this.ertek = ertekMod;
+        this.ertek = ertekMod;*/
+
+        this.ertek = ertek;
+
     }
 
     public Date getErv_kezdete() {

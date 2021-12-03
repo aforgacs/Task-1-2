@@ -12,4 +12,6 @@ export class AngContractListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+
+
 }
