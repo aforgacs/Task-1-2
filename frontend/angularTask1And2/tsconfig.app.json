@@ -7,7 +7,9 @@
   },
   "files": [
     "src/main.ts",
-    "src/polyfills.ts"
+    "src/polyfills.ts",
+    "src/app/models/CreateContractCommand.model.ts",
+    "src/app/models/ContractListItem.model.ts"
   ],
   "include": [
     "src/**/*.d.ts"

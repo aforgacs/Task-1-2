@@ -1,5 +1,7 @@
 import {AfterViewInit, Component, OnInit, ViewChild, ViewContainerRef} from '@angular/core';
+// @ts-ignore
 import {AgEditorComponent} from "ag-grid-angular";
+// @ts-ignore
 import {ICellEditorParams, KeyCode} from "ag-grid-community";
 
 @Component({

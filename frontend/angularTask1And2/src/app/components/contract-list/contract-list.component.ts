@@ -4,6 +4,7 @@ import { ViewChild, LOCALE_ID, Inject } from '@angular/core';
 import {formatDate} from "@angular/common";
 import {ActiveRendererComponent} from "../active-renderer/active-renderer.component";
 import {ActiveEditorComponent} from "../active-editor/active-editor.component";
+// @ts-ignore
 import {EditableCallbackParams} from "ag-grid-community";
 
 
