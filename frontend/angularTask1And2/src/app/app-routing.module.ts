@@ -7,6 +7,7 @@ import {AngContractListComponent} from "./components/ang-contract-list/ang-contr
 const routes: Routes = [{path:'contracts', component: ContractListComponent},
   {path:'ag-contracts', component: AngContractListComponent},
   {path: 'contract-form', component: ContractFormComponent},
+  {path: 'contract-form/:id', component: ContractFormComponent},
   {path:'**', component: ContractListComponent}];
 
 @NgModule({
