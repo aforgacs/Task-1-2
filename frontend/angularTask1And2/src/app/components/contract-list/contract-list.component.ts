@@ -53,7 +53,7 @@ export class ContractListComponent implements OnInit {
 
 
     this.rowData = [
-      {megnevezes: 'C raktarepulet felujitasa', ertek: 3500000.459, erv_kezdete: '2021/10/19.', erv_vege: null , aktiv: 'N' },
+      {megnevezes: 'C raktarepulet felujitasa', ertek: 3500000.459, erv_kezdete: '2021/10/19.', erv_vege:  '2021.10.31.', aktiv: 'N' },
       {megnevezes: 'IT infrastruktura korszerusitese', ertek: 500000.372, erv_kezdete: '2021.Jun.09.', erv_vege: '2022.Aug.30.,', aktiv: 'N' },
       {megnevezes: 'Human eroforrás bovítése 10%-kal', ertek: 257343.896, erv_kezdete: '2021-09-15.', erv_vege: '2021-11-23.', aktiv: 'I' },
       {megnevezes: 'Utvonal tervezo szoftver karbantartasa', ertek: 123295.63, erv_kezdete: '2021.01.17.', erv_vege: '2024.12.28.', aktiv: 'I' },

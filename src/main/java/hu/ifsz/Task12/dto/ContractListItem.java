@@ -21,9 +21,9 @@ public class ContractListItem {
     public ContractListItem(Contract contract) {
         this.id = contract.getId();
         this.megnevezes = contract.getMegnevezes();
-        String ertekString = String.format("%.2f", ertek);
-        float ertekMod = Float.parseFloat(ertekString);
-        this.ertek = ertekMod;
+       /* String ertekString = String.format("%.2f", ertek);
+        float ertekMod = Float.parseFloat(ertekString);*/
+        this.ertek = contract.getErtek();
         this.erv_kezdete = contract.getErv_kezdete();
         this.erv_vege = contract.getErv_vege();
         this.aktiv = contract.getAktiv();
