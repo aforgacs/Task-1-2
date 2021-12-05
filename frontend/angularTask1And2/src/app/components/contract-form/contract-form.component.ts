@@ -74,10 +74,15 @@ export class ContractFormComponent implements OnInit {
 
 
   onSubmit() {
-    this.contractForm.value.erv_kezdete = this.datePipe.transform(this.contractForm.value.erv_kezdete, 'yyyy.MM.dd')
-    this.contractForm.value.erv_vege = this.datePipe.transform(this.contractForm.value.erv_vege, 'yyyy.MM.dd')
+    if(this.contractForm.value.erv_kezdete < this.contractForm.value.erv_vege) {
 
-    this.contractId ? this.updateContract() : this.createContract();
+      this.contractForm.value.erv_kezdete = this.datePipe.transform(this.contractForm.value.erv_kezdete, 'yyyy.MM.dd')
+      this.contractForm.value.erv_vege = this.datePipe.transform(this.contractForm.value.erv_vege, 'yyyy.MM.dd')
+
+      this.contractId ? this.updateContract() : this.createContract();
+
+    }
+
 
   }
 
