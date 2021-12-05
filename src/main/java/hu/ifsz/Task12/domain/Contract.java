@@ -15,9 +15,9 @@ public class Contract {
     private Long id;
     private String megnevezes;
     private float ertek;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy.MM.dd")
     private Date erv_kezdete;
-    @JsonFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy.MM.dd")
     private Date erv_vege;
     private String aktiv;
 

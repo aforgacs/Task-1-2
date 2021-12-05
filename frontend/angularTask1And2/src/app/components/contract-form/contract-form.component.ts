@@ -4,21 +4,23 @@ import {ContractServiceService} from "../../services/contract-service.service";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
 import {handleValidationErrors} from "../utils/validation.handler";
+import { DatePipe } from '@angular/common';
+
 
 @Component({
   selector: 'app-contract-form',
   templateUrl: './contract-form.component.html',
-  styleUrls: ['./contract-form.component.css']
+  styleUrls: ['./contract-form.component.css'],
+  providers: [DatePipe]
 })
 export class ContractFormComponent implements OnInit {
 
   contractForm: FormGroup;
   contractId: any;
 
-
   constructor(private contractService: ContractServiceService, private http: HttpClient,
               private formbuilder: FormBuilder,
-              private router: Router, private route: ActivatedRoute) {
+              private router: Router, private route: ActivatedRoute, private datePipe: DatePipe) {
     this.contractForm = this.formbuilder.group({
       megnevezes: [ '',[Validators.required]],
       ertek: [ [Validators.required]],
@@ -26,8 +28,12 @@ export class ContractFormComponent implements OnInit {
       erv_vege: [''],
       aktiv:['',[Validators.required]]
     }, { validators: this.dateCompareValidator });
+
+
   }
 
+   //dateMod = this.datePipe.transform(this.contractForm.get('erv_kezdete').value, 'yyyy.MM.dd');
+  //dateModKetto = this.datePipe.transform(this.contractForm.get('erv_vege').value, 'yyyy.MM.dd');
 
 
    dateCompareValidator: ValidatorFn = (compare: AbstractControl):
@@ -42,6 +48,7 @@ export class ContractFormComponent implements OnInit {
 
 
   ngOnInit() {
+
 
     this.route.paramMap.subscribe(
       paramMap => {
@@ -67,6 +74,8 @@ export class ContractFormComponent implements OnInit {
 
 
   onSubmit() {
+    this.contractForm.value.erv_kezdete = this.datePipe.transform(this.contractForm.value.erv_kezdete, 'yyyy.MM.dd')
+    this.contractForm.value.erv_vege = this.datePipe.transform(this.contractForm.value.erv_vege, 'yyyy.MM.dd')
 
     this.contractId ? this.updateContract() : this.createContract();
 
