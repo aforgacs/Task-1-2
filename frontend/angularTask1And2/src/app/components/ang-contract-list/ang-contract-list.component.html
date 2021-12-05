@@ -13,7 +13,7 @@
     <tbody>
     <tr *ngFor="let contract of contracts">
       <td>{{contract.megnevezes}}</td>
-      <td>{{contract.ertek}}</td>
+      <td>{{contract.ertek.toFixed(2)}}</td>
       <td>{{contract.erv_kezdete}}</td>
       <td>{{contract.erv_vege}}</td>
       <td>{{contract.aktiv}}</td>
