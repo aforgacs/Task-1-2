@@ -3,6 +3,7 @@ import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, 
 import {ContractServiceService} from "../../services/contract-service.service";
 import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
+import {handleValidationErrors} from "../utils/validation.handler";
 
 @Component({
   selector: 'app-contract-form',
@@ -12,6 +13,7 @@ import {Router} from "@angular/router";
 export class ContractFormComponent implements OnInit {
 
   contractForm: FormGroup;
+  contractId: any;
 
 
   constructor(private contractService: ContractServiceService, private http: HttpClient,
@@ -52,6 +54,14 @@ export class ContractFormComponent implements OnInit {
       error => {
         console.warn(error);
       }
+    );
+  }
+
+  updateContract() {
+    this.contractService.updateContract(this.contractForm.value, this.contractId).subscribe(
+      () => this.contractForm.reset(),
+      error => handleValidationErrors(error, this.contractForm),
+      () => this.router.navigate(['ag-contracts']),
     );
   }
 

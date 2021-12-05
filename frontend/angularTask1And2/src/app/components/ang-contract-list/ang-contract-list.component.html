@@ -18,7 +18,8 @@
       <td>{{contract.erv_vege}}</td>
       <td>{{contract.aktiv}}</td>
       <td> <div class="btn-group">
-        <button class="btn btn-primary" (click)="editContract(contract.id)">Edit</button>
+        <button [disabled]="contract.aktiv === 'I'"
+                class="btn btn-primary" (click)="editContract(contract.id)">Edit</button>
       </div></td>
     </tr>
     </tbody>
