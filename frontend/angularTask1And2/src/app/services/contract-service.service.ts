@@ -26,4 +26,8 @@ export class ContractServiceService {
     return this.http.put(BASE_URL + '/' + contractId, contract);
   }
 
+  fetchContractDetails(contractId: string): Observable<CreateContractCommandModel> {
+    return this.http.get<CreateContractCommandModel>(BASE_URL + '/' + contractId);
+  }
+
 }

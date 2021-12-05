@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {ContractServiceService} from "../../services/contract-service.service";
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {handleValidationErrors} from "../utils/validation.handler";
 
 @Component({
@@ -18,7 +18,7 @@ export class ContractFormComponent implements OnInit {
 
   constructor(private contractService: ContractServiceService, private http: HttpClient,
               private formbuilder: FormBuilder,
-              private router: Router) {
+              private router: Router, private route: ActivatedRoute) {
     this.contractForm = this.formbuilder.group({
       megnevezes: [ '',[Validators.required]],
       ertek: [ [Validators.required]],
@@ -43,9 +43,37 @@ export class ContractFormComponent implements OnInit {
 
   ngOnInit() {
 
+    this.route.paramMap.subscribe(
+      paramMap => {
+        const editableContractId = paramMap.get('id');
+        if (editableContractId) {
+          this.contractId = +editableContractId;
+          this.getContractDetails(editableContractId);
+        }
+      },
+      error => console.warn(error),
+    );
   }
 
+
+  private getContractDetails(contractId: string) {
+    this.contractService.fetchContractDetails(contractId).subscribe(
+      (data: CreateContractCommandModel) => {
+        this.contractForm.patchValue(data);
+      },
+    );
+  }
+
+
+
   onSubmit() {
+
+    this.contractId ? this.updateContract() : this.createContract();
+
+  }
+
+
+  createContract() {
     this.contractService.createContract(this.contractForm.value).subscribe(
       () => {
         this.contractForm.reset();

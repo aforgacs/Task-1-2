@@ -50,13 +50,26 @@ public class ContractService {
 
     private void updateValues(CreateContractCommand createContractCommand, Contract contract) {
 
-        if(contract.getAktiv() == "N") {
             contract.setMegnevezes(createContractCommand.getMegnevezes());
             contract.setErtek(createContractCommand.getErtek());
             if((createContractCommand.getErv_vege().after(contract.getErv_kezdete()))){
                 contract.setErv_vege(createContractCommand.getErv_vege());
             }
             contract.setAktiv(createContractCommand.getAktiv());
-        }
+
     }
+
+
+public CreateContractCommand getContractDetails(Long id) {
+    CreateContractCommand contractDetails = null;
+    Optional<Contract> contractOptional = contractRepository.findById(id);
+    if (contractOptional.isPresent()) {
+        contractDetails = new CreateContractCommand(contractOptional.get());
+    }
+    return contractDetails;
 }
+
+
+}
+
+

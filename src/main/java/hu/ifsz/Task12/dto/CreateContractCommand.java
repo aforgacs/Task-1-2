@@ -1,6 +1,7 @@
 package hu.ifsz.Task12.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import hu.ifsz.Task12.domain.Contract;
 
 import java.util.Date;
 
@@ -15,7 +16,16 @@ public class CreateContractCommand {
     private String aktiv;
 
 
+    public CreateContractCommand() {
+    }
 
+    public CreateContractCommand(Contract contract) {
+        this.megnevezes = contract.getMegnevezes();
+        this.ertek = contract.getErtek();
+        this.erv_kezdete = contract.getErv_kezdete();
+        this.erv_vege = contract.getErv_vege();
+        this.aktiv = contract.getAktiv();
+    }
 
     public String getMegnevezes() {
         return megnevezes;

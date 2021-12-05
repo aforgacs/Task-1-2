@@ -39,6 +39,11 @@ public class ContractController {
         return new ResponseEntity<>(contractService.listContracts(), HttpStatus.OK);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<CreateContractCommand> updateContract(@PathVariable Long id) {
+        return new ResponseEntity<>(contractService.getContractDetails(id), HttpStatus.OK);
+    }
+
     @PutMapping("/{id}")
     public ResponseEntity updateContract(@Valid @RequestBody CreateContractCommand contract, @PathVariable Long id) {
         Contract updatedContract = contractService.updateContract(contract, id);
