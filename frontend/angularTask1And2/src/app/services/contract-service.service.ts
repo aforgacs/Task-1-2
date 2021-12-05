@@ -22,4 +22,8 @@ export class ContractServiceService {
     return this.http.get<Array<ContractListItemModel>>(BASE_URL);
   }
 
+  updateContract(contract: CreateContractCommandModel, contractId: number): Observable<any> {
+    return this.http.put(BASE_URL + '/' + contractId, contract);
+  }
+
 }

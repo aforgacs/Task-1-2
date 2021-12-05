@@ -1,6 +1,7 @@
 package hu.ifsz.Task12.controller;
 
 
+import hu.ifsz.Task12.domain.Contract;
 import hu.ifsz.Task12.dto.ContractListItem;
 import hu.ifsz.Task12.dto.CreateContractCommand;
 import hu.ifsz.Task12.service.ContractService;
@@ -36,5 +37,11 @@ public class ContractController {
     public ResponseEntity<List<ContractListItem>> getExpenses() {
         logger.info("Contracts list page is requested");
         return new ResponseEntity<>(contractService.listContracts(), HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity updateContract(@Valid @RequestBody CreateContractCommand contract, @PathVariable Long id) {
+        Contract updatedContract = contractService.updateContract(contract, id);
+        return contract != null ? new ResponseEntity(HttpStatus.OK) : new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }

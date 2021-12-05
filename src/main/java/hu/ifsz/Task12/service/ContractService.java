@@ -36,4 +36,27 @@ public class ContractService {
     public List<ContractListItem> listContracts() {
         return contractRepository.findAll().stream().map(ContractListItem::new).collect(Collectors.toList());
     }
+
+
+    public Contract updateContract(CreateContractCommand contract, Long id) {
+        Optional<Contract> contractOptional = contractRepository.findById(id);
+        Contract contract1 = null;
+        if (contractOptional.isPresent()) {
+            contract1 = contractOptional.get();
+            updateValues(contract, contract1);
+        }
+        return contract1;
+    }
+
+    private void updateValues(CreateContractCommand createContractCommand, Contract contract) {
+
+        if(contract.getAktiv() == "N") {
+            contract.setMegnevezes(createContractCommand.getMegnevezes());
+            contract.setErtek(createContractCommand.getErtek());
+            if((createContractCommand.getErv_vege().after(contract.getErv_kezdete()))){
+                contract.setErv_vege(createContractCommand.getErv_vege());
+            }
+            contract.setAktiv(createContractCommand.getAktiv());
+        }
+    }
 }

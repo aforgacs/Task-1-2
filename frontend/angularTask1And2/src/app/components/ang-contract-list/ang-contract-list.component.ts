@@ -25,4 +25,8 @@ export class AngContractListComponent implements OnInit {
     });
   };
 
+  editContract(contractId: number): void {
+    this.router.navigate(['/contract-form', contractId]);
+  }
+
 }
