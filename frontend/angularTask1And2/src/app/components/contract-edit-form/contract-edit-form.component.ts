@@ -3,17 +3,16 @@ import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, 
 import {ContractServiceService} from "../../services/contract-service.service";
 import {HttpClient} from "@angular/common/http";
 import {ActivatedRoute, Router} from "@angular/router";
+import {DatePipe} from "@angular/common";
 import {handleValidationErrors} from "../utils/validation.handler";
-import { DatePipe } from '@angular/common';
-
 
 @Component({
-  selector: 'app-contract-form',
-  templateUrl: './contract-form.component.html',
-  styleUrls: ['./contract-form.component.css'],
+  selector: 'app-contract-edit-form',
+  templateUrl: './contract-edit-form.component.html',
+  styleUrls: ['./contract-edit-form.component.css'],
   providers: [DatePipe]
 })
-export class ContractFormComponent implements OnInit {
+export class ContractEditFormComponent implements OnInit {
 
   contractForm: FormGroup;
   contractId: any;
@@ -22,21 +21,23 @@ export class ContractFormComponent implements OnInit {
               private formbuilder: FormBuilder,
               private router: Router, private route: ActivatedRoute, private datePipe: DatePipe) {
     this.contractForm = this.formbuilder.group({
-      megnevezes: [ null,[Validators.required]],
-      ertek: [null, [Validators.required]],
-      erv_kezdete:[null,[Validators.required]],
-      erv_vege: [null],
-      aktiv:[null,[Validators.required]]
-    } );
+      megnevezes: [ '',[Validators.required]],
+      ertek: [ [Validators.required]],
+      erv_kezdete:['',[Validators.required]],
+      erv_vege: [''],
+      aktiv:['',[Validators.required]]
+    }, );
 
 
   }
 
-   //dateMod = this.datePipe.transform(this.contractForm.get('erv_kezdete').value, 'yyyy.MM.dd');
-  //dateModKetto = this.datePipe.transform(this.contractForm.get('erv_vege').value, 'yyyy.MM.dd');
+  /*dateCompareValidator: ValidatorFn = (compare: AbstractControl):
+    ValidationErrors | null => {
+    const erv_kezdete = compare.get('erv_kezdete');
+    const erv_vege = compare.get('erv_vege');
 
-
-
+    return erv_kezdete && erv_vege && erv_kezdete.value <= erv_vege.value ? { identityRevealed: true } : null;
+  };*/
 
 
 
@@ -68,9 +69,7 @@ export class ContractFormComponent implements OnInit {
 
 
   onSubmit() {
-    if((this.contractForm.value.erv_vege === null || this.contractForm.value.erv_kezdete < this.contractForm.value.erv_vege)
-    && this.contractForm.value.erv_kezdete != null && this.contractForm.value.megnevezes != null &&
-      this.contractForm.value.ertek != null && this.contractForm.value.aktiv != null) {
+    if(this.contractForm.value.erv_kezdete < this.contractForm.value.erv_vege) {
 
       this.contractForm.value.erv_kezdete = this.datePipe.transform(this.contractForm.value.erv_kezdete, 'yyyy.MM.dd')
       this.contractForm.value.erv_vege = this.datePipe.transform(this.contractForm.value.erv_vege, 'yyyy.MM.dd')
@@ -102,5 +101,6 @@ export class ContractFormComponent implements OnInit {
       () => this.router.navigate(['ag-contracts']),
     );
   }
+
 
 }

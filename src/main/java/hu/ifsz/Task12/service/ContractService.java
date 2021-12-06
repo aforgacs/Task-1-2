@@ -4,6 +4,7 @@ package hu.ifsz.Task12.service;
 import hu.ifsz.Task12.domain.Contract;
 import hu.ifsz.Task12.dto.ContractListItem;
 import hu.ifsz.Task12.dto.CreateContractCommand;
+import hu.ifsz.Task12.dto.UpdateContractCommand;
 import hu.ifsz.Task12.repository.ContractRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -60,11 +61,11 @@ public class ContractService {
     }
 
 
-public CreateContractCommand getContractDetails(Long id) {
-    CreateContractCommand contractDetails = null;
+public UpdateContractCommand getContractDetails(Long id) {
+    UpdateContractCommand contractDetails = null;
     Optional<Contract> contractOptional = contractRepository.findById(id);
     if (contractOptional.isPresent()) {
-        contractDetails = new CreateContractCommand(contractOptional.get());
+        contractDetails = new UpdateContractCommand(contractOptional.get());
     }
     return contractDetails;
 }

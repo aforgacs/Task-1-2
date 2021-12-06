@@ -1,7 +1,7 @@
 <div>
   <h3>Contract form</h3>
   <hr/>
-  <form [formGroup]="contractForm" (ngSubmit)="onSubmit()">
+  <form [formGroup]="contractForm">
     <div class="form-group">
       <label
         for="megnevezes"
@@ -19,10 +19,6 @@
 
       />
 
-      <div *ngIf="contractForm.controls['megnevezes'].invalid && contractForm.controls['megnevezes'].touched" class="alert alert-danger">
-        Megnevezes is required.
-      </div>
-
     </div>
 
 
@@ -36,6 +32,7 @@
         Ertek:
       </label>
       <input
+        [readonly]="contractForm.value.erv_vege != null"
         type="number"
         id="ertek"
         formControlName="ertek"
@@ -43,10 +40,6 @@
         class="form-control"
 
       />
-
-      <div *ngIf="contractForm.controls['ertek'].invalid && contractForm.controls['ertek'].touched" class="alert alert-danger">
-        Ertek is required.
-      </div>
 
     </div>
 
@@ -60,16 +53,12 @@
         name="erv_kezdete"
         type="date"
       >
-
-      <div *ngIf="contractForm.controls['erv_kezdete'].invalid && contractForm.controls['erv_kezdete'].touched" class="alert alert-danger">
-        Ervenyesseg kezdete is required.
-      </div>
-
     </div>
 
     <div class="form-group">
       <label for="erv_vege">Ervenyesseg Vege:</label>
       <input
+        [readonly]="contractForm.value.erv_vege != null"
         class="form-control"
         formControlName="erv_vege"
         id="erv_vege"
@@ -91,12 +80,8 @@
         <label class="form-control-label" for="n">N</label><br>
       </div>
 
-      <div *ngIf="contractForm.controls['aktiv'].invalid && contractForm.controls['aktiv'].touched" class="alert alert-danger">
-        Value for aktiv is required.
-      </div>
-
     </div>
 
-    <button [disabled]="!contractForm.valid" type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-success" (click)="onSubmit()">Submit</button>
   </form>
 </div>

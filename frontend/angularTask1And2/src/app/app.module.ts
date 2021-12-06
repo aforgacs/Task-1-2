@@ -13,6 +13,7 @@ import {AngContractListComponent} from "./components/ang-contract-list/ang-contr
 import { AgGridModule } from 'ag-grid-angular';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import { ContractEditFormComponent } from './components/contract-edit-form/contract-edit-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {HttpClientModule} from "@angular/common/http";
     ActiveRendererComponent,
     ActiveEditorComponent,
     ContractFormComponent,
-    AngContractListComponent
+    AngContractListComponent,
+    ContractEditFormComponent
   ],
   imports: [
     BrowserModule,

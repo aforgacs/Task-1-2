@@ -4,6 +4,7 @@ package hu.ifsz.Task12.controller;
 import hu.ifsz.Task12.domain.Contract;
 import hu.ifsz.Task12.dto.ContractListItem;
 import hu.ifsz.Task12.dto.CreateContractCommand;
+import hu.ifsz.Task12.dto.UpdateContractCommand;
 import hu.ifsz.Task12.service.ContractService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,7 +41,7 @@ public class ContractController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<CreateContractCommand> updateContract(@PathVariable Long id) {
+    public ResponseEntity<UpdateContractCommand> updateContract(@PathVariable Long id) {
         return new ResponseEntity<>(contractService.getContractDetails(id), HttpStatus.OK);
     }
 
